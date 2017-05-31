@@ -6,5 +6,3 @@ gem "sqlite3"
 gem "pry"
 gem "require_all"
 gem "rest-client"
-gem 'faker'
-gem 'json'

@@ -23,3 +23,9 @@ data = RestClient.get('https://api.foursquare.com/v2/venues/explore?near=New+Yor
 #
 # my_hash = JSON.load(File.read('data'))
 # https://stackoverflow.com/questions/40567108/ruby-convert-string-to-hash
+
+
+#CLI example:
+-interpolate their answer, which is the name of the restuarant, into the appriopriate place in the
+search api url.
+-then grab the first match
