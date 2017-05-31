@@ -6,5 +6,4 @@ gem "sqlite3"
 gem "pry"
 gem "require_all"
 gem "rest-client"
-gem  "foursquare2"
-gem "yelp"
+gem 'rake'

@@ -1,5 +1,6 @@
 require_relative '../config/environment'
 
 require 'rest-client'
-require 'foursquare2'
-require 'yelp'
+require 'json'
+require 'pry'
+require 'rest-client'
