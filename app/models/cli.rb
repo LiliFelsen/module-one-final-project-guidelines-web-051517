@@ -28,7 +28,7 @@ class CLI
       else
         puts "Sorry, this is not a valid command."
       end
-    end
+  end
 
   def add_visit
     puts "Do you want to"
@@ -81,7 +81,7 @@ class CLI
         puts "Sorry, this is not a valid command."
       end
       menu_or_exit
-    end
+  end
 
     def menu_or_exit
       puts "What do you want to do now?"
