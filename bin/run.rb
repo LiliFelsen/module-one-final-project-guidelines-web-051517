@@ -9,4 +9,3 @@ require 'pry'
 puts "Welcome to your Budgeting App!"
 new_session = CLI.new
 new_session.sign_in
-new_session.menu_or_exit
