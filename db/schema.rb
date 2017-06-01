@@ -10,22 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
-
-  create_table "places", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "username"
-  end
-
-  create_table "visited_places", force: :cascade do |t|
-    t.integer "money_spent"
-    t.integer "visits",      default: 1
-    t.integer "user_id"
-    t.integer "place_id"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
