@@ -7,18 +7,18 @@ class CLI
   end
 
   def sign_in
-    puts "Please sign in with your name:"
-    name_input = gets.downcase.strip
-    puts "and username:"
+    puts "Please sign in with your username:"
     username_input = gets.downcase.strip
-    @user = User.find_or_create_by(username: username_input, name: name_input)
+    @user = User.find_or_create_by(username: username_input)
     menu
   end
 
   def menu
+    puts "----------------------------------------------"
     puts "What do you want to do?"
     puts "1. Add a new visit"
     puts "2. See your spending status"
+    puts "----------------------------------------------"
     userchoice = gets.chomp.to_i
       case userchoice
       when 1
@@ -31,9 +31,11 @@ class CLI
   end
 
   def add_visit
-    puts "Do you want to"
+    puts "----------------------------------------------"
+    puts "Do you want to:"
     puts "1. Add a new visit to an existing place"
     puts "2. Create a new place and visit"
+    puts "----------------------------------------------"
     userchoice = gets.chomp.to_i
     case userchoice
     when 1
@@ -59,12 +61,14 @@ class CLI
   end
 
   def see_spending
+    puts "----------------------------------------------"
     puts "What do you want to see?"
     puts "1. Total spending"
     puts "2. Most visited place"
     puts "3. Total spent at most visited place"
     puts "4. Average amount spent at most visited place"
     puts "5. Top 5 most visited places"
+    puts "----------------------------------------------"
       user_input = gets.chomp.to_i
       case user_input
       when 1
@@ -84,9 +88,11 @@ class CLI
   end
 
     def menu_or_exit
+      puts "----------------------------------------------"
       puts "What do you want to do now?"
       puts "1. Go back to the main menu"
       puts "2. Exit"
+      puts "----------------------------------------------"
       userchoice = gets.chomp.to_i
       case userchoice
       when 1
