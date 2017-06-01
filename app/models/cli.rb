@@ -42,7 +42,7 @@ class CLI
       visited_place = Place.find_or_create_by(name: place_input)
       puts "How much did you spend?"
       spending_input = gets.chomp.to_i
-      new_visit = VisitedPlace.find_or_create_by(place_id: visited_place.id)
+      new_visit = VisitedPlace.find_by(place_id: visited_place.id)
       new_visit.money_spent += spending_input
       new_visit.visits += 1
     when 2
