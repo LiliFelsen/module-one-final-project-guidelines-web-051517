@@ -54,13 +54,16 @@ class ApiSearch
 # but that may have been refactored.
 
      def no_match
-       puts "The restaurant you have entered cannot be found. Maybe you made a spelling error
-       please try again. Maybe it does not exist. Please enter it again"
+       puts "----------------------------------------------------------------------------"
+       puts "The restaurant you have entered cannot be found. Maybe you made a spelling"
+       puts "error, or perhaps it doesn't exist in our database. Please enter the name again."
+       puts "----------------------------------------------------------------------------"
+
        input = gets.chomp
        @match = input
        @times_called += 1
        if @times_called >= 2
-         puts "Input is still invalid. With another failed attempt, program will termiante."
+         puts "Input is still invalid. With another failed attempt, program will terminate."
          if @times_called >= 3
            puts "Program ending. Goodbye!"
            exit(0)
@@ -89,20 +92,28 @@ class ApiSearch
 #this tells the customer that mulitple restaurant locations were found, and presents
 # a list of the boros the different restaurants were found within. it invites them to
 # pick one.
-        puts "We found multiple restaurant locations, please pick one by entering
-        a number that corresponds to the list below"
+        puts "----------------------------------------------------------------------------"
+        puts "Looks like there are multiple locations by that name. Let us know what borough"
+        puts "the restaurant was in by entering a number that corresponds to the list below:"
+        puts "----------------------------------------------------------------------------"
               boros.each_with_index do |boro, index|
               puts "#{index + 1} #{boro}"
               end
+        puts "----------------------------------------------------------------------------"
         input = gets.chomp.to_i
 
 #these account for the user putting in too long a number.
         if input > boros.length || input.to_i <= 0
+          puts "----------------------------------------------------------------------------"
           puts "Invalid, redirecting you to the menu friend"
+          puts "----------------------------------------------------------------------------"
           multiple_restaurants
-        elsif
-          puts "You have selected #{@match} in #{boros[input - 1]}, is this correct?
-              enter 1 for yes, or 2 for no"
+        else
+          puts "----------------------------------------------------------------------------"
+          puts "You have selected #{@match} in #{boros[input - 1].downcase.capitalize}, is"
+          puts "this correct?"
+          puts "Enter 1 for yes, or 2 for no"
+          puts "----------------------------------------------------------------------------"
         end
 
         input2 = gets.chomp.to_i
@@ -121,13 +132,16 @@ class ApiSearch
           end
         end
 
-        puts "Please pick the restaurant by entering a number from the list
-        below"
+        puts "----------------------------------------------------------------------------"
+        puts "Please pick the restaurant by entering a number from the list below:"
+        puts "----------------------------------------------------------------------------"
 
         all_restaurants_in_boros.each_with_index do |restaurant, index|
           puts "#{index + 1} #{restaurant[:dba]}, #{restaurant[:boro]}, #{restaurant[:street]}"
+
         end
 
+        puts "----------------------------------------------------------------------------"
         input3 = gets.chomp.to_i
 
         if input3 > all_restaurants_in_boros.length
@@ -135,14 +149,22 @@ class ApiSearch
           multiple_restaurants
         end
 
-        puts "You have selected #{@match} in #{all_restaurants_in_boros[input3 - 1][:street]} #{all_restaurants_in_boros[input3 - 1][:boro]}, is this correct?
-            enter 1 for yes, or 2 for no"
+        puts "----------------------------------------------------------------------------"
+        puts "You have selected #{@match} in #{all_restaurants_in_boros[input3 - 1][:street]} #{all_restaurants_in_boros[input3 - 1][:boro]}."
+        puts "Is this correct?"
+        puts ""
+        puts "(Enter 1 for yes, or 2 for no.)"
+        puts "----------------------------------------------------------------------------"
 
         input4 = gets.chomp.to_i
+
 
         if input4 == 1
           @boro = all_restaurants_in_boros[input3 - 1][:boro]
           @street = all_restaurants_in_boros[input3 - 1][:street]
+          puts "----------------------------------------------------------------------------"
+          puts "Sounds good! Your response will saved to the system."
+          puts "----------------------------------------------------------------------------"
         elsif input2 == 2
           puts "Sorry, redirecting you to the menu"
           multiple_restaurants
@@ -152,6 +174,6 @@ end
 
 
 # x = ApiSearch.new("DUNKIN' DONUTS")
-x = ApiSearch.new("asdfkmsdfUTS")
+x = ApiSearch.new("Dunkin' Donuts")
 
 x.find_match

@@ -22,8 +22,24 @@
 # end
 
 #4# line 100 shoudl also protect against being passed strings:
-  # if input > boros.length || input.to_i <= 0 
+  # if input > boros.length || input.to_i <= 0
 
+#5# line 103 might have to be else instead of elsif with no condition
+
+#6# After:
+# "We found multiple restaurant locations, please pick one
+# by entering a number that corresponds to the list below"
+# there's a free-floating space.
+# ALso in the next sequence, you can enter a string instead of a number
+# and it still continues.
+
+# "Please pick the restaurant by entering a number from the list
+#         below"
+# 1 DUNKIN' DONUTS, QUEENS, JFK INTERNATIONAL AIRPORT
+# 2 DUNKIN' DONUTS, QUEENS, METROPOLITAN AVE
+# 3 DUNKIN' DONUTS, QUEENS, GRAND CENTRAL PARKWAY
+# 4 DUNKIN' DONUTS, QUEENS, BEACH  116 STREET
+# x
 
 
 #?
