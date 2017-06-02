@@ -1,4 +1,11 @@
 require_relative '../config/environment'
+<<<<<<< HEAD
+require_relative '../app/models/cli.rb'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+=======
 
 require 'rest-client'
 require 'json'
@@ -10,6 +17,7 @@ data = RestClient.get('https://api.foursquare.com/v2/venues/explore?near=New+Yor
 
 # puts data.to_s
 # puts data.headers
+>>>>>>> c2187bc0735b38079b814e850a22f58381c37245
 
 # data.each do |key, value|
 #   value.each do |key2, value2|
@@ -17,6 +25,11 @@ data = RestClient.get('https://api.foursquare.com/v2/venues/explore?near=New+Yor
 #   end
 # end
 
+<<<<<<< HEAD
+puts "Welcome to your Budgeting App!"
+new_session = CLI.new
+new_session.sign_in
+=======
 # puts JSON.parse(data)
 #
 # hash_as_string = hash_object.to_json
@@ -29,3 +42,4 @@ data = RestClient.get('https://api.foursquare.com/v2/venues/explore?near=New+Yor
 -interpolate their answer, which is the name of the restuarant, into the appriopriate place in the
 search api url.
 -then grab the first match
+>>>>>>> c2187bc0735b38079b814e850a22f58381c37245
