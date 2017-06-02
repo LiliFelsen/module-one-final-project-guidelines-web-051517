@@ -8,6 +8,8 @@ class ApiSearch
     def initialize(match)
       @match = match
       @restaurant = []
+      @boro = nil
+      @street = nil
     end
 
      def find_match
@@ -25,7 +27,8 @@ class ApiSearch
       if @restaurant == []
         no_match
       elsif @restaurant.length == 1
-        puts restaurant.first[:boro] + " " + restaurant.first[:street]
+        @boro = restaurant.first[:boro]
+        @street = restaurant.first[:street]
       elsif @restaurant.length > 1
         multiple_restaurants
       end
@@ -47,19 +50,24 @@ class ApiSearch
           end
          end
 
-        puts "We found multiple restaurant locations, please pick one
-              by entering a number that corresponds to the list below"
+        puts "We found multiple restaurant locations, please pick one by entering
+        a number that corresponds to the list below"
               boros.each_with_index do |boro, index|
               puts "#{index + 1} #{boro}"
               end
         input = gets.chomp.to_i
+
+        if input > boros.length
+          puts "Invalid, redirecting you to the menu friend"
+          multiple_restaurants
+        end
 
         puts "You have selected #{@match} in #{boros[input - 1]}, is this correct?
               enter 1 for yes, or 2 for no"
         input2 = gets.chomp.to_i
 
         if input2 == 1
-          puts "add restaurant and restaurant info"
+          @boro = boros[input - 1]
         elsif input2 == 2
           puts "Sorry, redirecting you to the menu"
           multiple_restaurants
