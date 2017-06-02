@@ -60,11 +60,20 @@ class ApiSearch
         if input > boros.length
           puts "Invalid, redirecting you to the menu friend"
           multiple_restaurants
+        elsif
+          puts "You have selected #{@match} in #{boros[input - 1]}, is this correct?
+              enter 1 for yes, or 2 for no"
+          input2 = gets.chomp.to_i
         end
 
-        puts "You have selected #{@match} in #{boros[input - 1]}, is this correct?
-              enter 1 for yes, or 2 for no"
-        input2 = gets.chomp.to_i
+        all_restaurants_in_boros = []
+        @restaurant.each do |restaurant_hash|
+          if restaurant_hash[:boro] == boros[input - 1]
+          all_restaurants_in_boros.push(restaurant_hash)
+          end
+        end
+
+        puts all_restaurants_in_boros
 
         if input2 == 1
           @boro = boros[input - 1]
