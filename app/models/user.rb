@@ -11,24 +11,30 @@ class User < ActiveRecord::Base
   has_many :places, through: :visited_places
 
   def total_spending
-    total = 0
+    total = 0    
     self.visited_places.each do |visitedplace|
+      binding.pry
       total += visitedplace[:money_spent]
     end
+    print "$"
     puts total
   end
 
   def most_visited_place
     puts self.visited_places.max_by(&:visits).place.name.capitalize
+    print "Nb of visits: "
+    puts self.visited_places.max_by(&:visits).visits
   end
 
   def total_spent_at_most_visited_place
+    print "$"
     puts self.visited_places.max_by(&:visits).money_spent
   end
 
   def average_spent_at_most_visited_place
     total = self.total_spent_at_most_visited_place
     visits = self.visited_places.max_by(&:visits).visits
+    print "$"
     puts average = total.to_i / visits.to_i
   end
 

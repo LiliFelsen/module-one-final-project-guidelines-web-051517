@@ -149,7 +149,9 @@ class CLI
       current_spending = new_visit.money_spent
       new_spending = current_spending + spending_input
       new_visit.update(money_spent: new_spending)
-      new_visit.visits += 1
+      current_visit = new_visit.visits
+      new_visit_total = current_visit + 1
+      new_visit.update(visits: new_visit_total)
     when 2
       flag_spending = nil
       flag_grade = nil
@@ -206,7 +208,7 @@ class CLI
     place_input = gets.downcase.strip
       if user_all_places_names.include? place_input
         place_to_update = Place.find_or_create_by(name: place_input)
-        visited_place_to_update = VisitedPlace.find_by(place_id: place_to_update.id)
+        visited_place_to_update = VisitedPlace.where('place_id = ? AND user_id = ?', place_to_update.id, @user.id).first
         flag_place = true
       else
         puts "-------------------------------------------------"
@@ -226,7 +228,7 @@ class CLI
         puts "Grade needs to be between 0 and 5.".colorize(:red)
       end
     end
-    visited_place_to_update.update_attribute(:grade, grade_input)
+    visited_place_to_update.update(grade: grade_input)
     menu_or_exit
   end
 
