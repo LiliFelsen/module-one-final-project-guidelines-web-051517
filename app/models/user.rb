@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def most_visited_place
-    puts self.visited_places.max_by(&:visits).place.name
+    puts self.visited_places.max_by(&:visits).place.name.capitalize
   end
 
   def total_spent_at_most_visited_place
@@ -34,12 +34,14 @@ class User < ActiveRecord::Base
 
   def top_five_most_visited_places
     self.visited_places.limit(5).sort_by(&:visits).each do |visitedplace|
-      puts visitedplace.place.name
+      puts visitedplace.place.name.capitalize
     end
   end
 
   def best_grade_place
-    puts self.visited_places.max_by(&:grade).place.name
+    puts self.visited_places.max_by(&:grade).place.name.capitalize
+    print "Grade: "
+    puts self.visited_places.max_by(&:grade).grade
   end
 
 end
