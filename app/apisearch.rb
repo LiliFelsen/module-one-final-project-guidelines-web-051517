@@ -97,7 +97,7 @@ class ApiSearch
         input = gets.chomp.to_i
 
 #these account for the user putting in too long a number.
-        if input > boros.length || input.to_i <= 0 
+        if input > boros.length || input.to_i <= 0
           puts "Invalid, redirecting you to the menu friend"
           multiple_restaurants
         elsif
