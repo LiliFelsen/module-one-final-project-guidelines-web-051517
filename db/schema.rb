@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 3) do
   create_table "visited_places", force: :cascade do |t|
     t.integer "money_spent"
     t.integer "visits",      default: 1
+    t.integer "grade"
     t.integer "user_id"
     t.integer "place_id"
   end
