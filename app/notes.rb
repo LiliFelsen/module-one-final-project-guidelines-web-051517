@@ -8,8 +8,8 @@
 
 #2# find_match could be several methods.
 
-#3# This if statement in the multiple_restaurants method leaves open the possibiity that the user could enter a
-#negative number, or even a string or other unsupported class.
+# 3# The if statement below, in the multiple_restaurants method, leaves open the possibiity that the user could enter a
+# negative number, or even an unsupported class like a string.
 # Solution - add some or statements after the length one.
 # || input >= 0 || Integer === input.class
 
@@ -21,6 +21,8 @@
 #       enter 1 for yes, or 2 for no"
 # end
 
+#4# line 100 shoudl also protect against being passed strings:
+  # if input > boros.length || input.to_i <= 0 
 
 
 
