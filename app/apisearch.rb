@@ -43,6 +43,9 @@ class ApiSearch
      end
 
      def multiple_restaurants
+
+       #narrowing down restaurants by boro, and getting the user to
+       #let us know what the right boro is
         boros = []
         @restaurant.each do |restaurant_hash|
           if !boros.include? restaurant_hash[:boro]
@@ -63,9 +66,17 @@ class ApiSearch
         elsif
           puts "You have selected #{@match} in #{boros[input - 1]}, is this correct?
               enter 1 for yes, or 2 for no"
-          input2 = gets.chomp.to_i
         end
 
+        input2 = gets.chomp.to_i
+
+        if input2 == 2
+          puts "Sorry, redirecting you to the menu"
+          multiple_restaurants
+        end
+
+        #once we have the right boro from the user, we will output all the
+        #restaurant in that boro, and the user can pick it by street
         all_restaurants_in_boros = []
         @restaurant.each do |restaurant_hash|
           if restaurant_hash[:boro] == boros[input - 1]
@@ -73,10 +84,28 @@ class ApiSearch
           end
         end
 
-        puts all_restaurants_in_boros
+        puts "Please pick the restaurant by entering a number from the list
+        below"
 
-        if input2 == 1
-          @boro = boros[input - 1]
+        all_restaurants_in_boros.each_with_index do |restaurant, index|
+          puts "#{index + 1} #{restaurant[:dba]}, #{restaurant[:boro]}, #{restaurant[:street]}"
+        end
+
+        input3 = gets.chomp.to_i
+
+        if input3 > all_restaurants_in_boros.length
+          puts "Invalid, redirecting you to the menu friend"
+          multiple_restaurants
+        end
+
+        puts "You have selected #{@match} in #{all_restaurants_in_boros[input3 - 1][:street]} #{all_restaurants_in_boros[input3 - 1][:boro]}, is this correct?
+            enter 1 for yes, or 2 for no"
+
+        input4 = gets.chomp.to_i
+
+        if input4 == 1
+          @boro = all_restaurants_in_boros[input3 - 1][:boro]
+          @street = all_restaurants_in_boros[input3 - 1][:street]
         elsif input2 == 2
           puts "Sorry, redirecting you to the menu"
           multiple_restaurants
